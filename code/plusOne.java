@@ -1,34 +1,24 @@
-// https://leetcode.com/problems/plus-one/
-class Solution {
-	/*
-		clarifying questions & edge cases:
-            no leading 0s
-            9999... case -- return 10000...
-                for all other cases -- output will have the same size
-		test: [4,3,2,1]
+// https://leetcode.com/explore/learn/card/array-and-string/201/introduction-to-array/1148/
 
-		algorithm: handle special (all 9) case separately 
-            iterate backwards and add 1, pay attention to carry
-        
-        n: length of array
-		time complexity: O(n)
-		space complexity: O(1)
-	*/
+class Solution {
+    /*
+        n: arr len
+        time: O(n)
+        space: O(1) -- reused input space
+    */
     public int[] plusOne(int[] digits) {
-        int len = digits.length;
-        int[] result = new int[len];
-        int carry = 1, base = 10;
-        for(int i=len-1; i>=0; i--) {
-            result[i] = ( digits[i] + carry ) % base;
-            carry = ( digits[i] + carry ) / base;
+        int carry = 1;
+        for(int i=digits.length-1; i>=0; i--) {
+            int val = digits[i] + carry;
+            carry = val / 10;
+            digits[i] = val % 10;
         }
         
-        // all 9 case
-        if( carry == 1 ) {
-            result = new int[len+1];
-            result[0] = 1;
+        if(carry == 1) {
+            digits = new int[digits.length+1];
+            digits[0] = 1;
         }
         
-        return result;
+        return digits;
     }
 }
