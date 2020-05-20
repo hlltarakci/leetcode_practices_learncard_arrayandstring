@@ -1,38 +1,26 @@
-// https://leetcode.com/problems/pascals-triangle/
+// https://leetcode.com/explore/learn/card/array-and-string/202/introduction-to-2d-array/1170/
+
 class Solution {
-	/*
-		clarifying questions & edge cases:
-		test: 
-		    5
-		algorithm:
-		    populate each row based on (looping through) previous entry
-            
-        n: num of rows
-		time complexity: O(n^2)
-		space complexity: O(1) -- excluding output
-            output takes O(n^2) space
-	*/
+    /*
+        time: O(n^2)
+        space: O(n^2)
+    */
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> triangle = new ArrayList<>();
+        List<List<Integer>> results = new ArrayList<>();
         
         for(int i=0; i<numRows; i++) {
-            List<Integer> entry = new ArrayList<>();
-            entry.add(1);
+            List<Integer> result = new ArrayList<>();
+            result.add(1);
             
-            if(i == 0) {
-                triangle.add(entry);
-                continue;
+            List<Integer> prevResult = results.size() > 0 ? results.get(results.size()-1) : new ArrayList<>();
+            for(int j = 1; j < prevResult.size(); j++) {
+                result.add(prevResult.get(j-1) + prevResult.get(j));
             }
             
-            List<Integer> prevEntry = triangle.get(i-1);
-            for(int j=1; j < prevEntry.size(); j++) {
-                entry.add(prevEntry.get(j-1) + prevEntry.get(j));
-            }
-            
-            entry.add(1);
-            triangle.add(entry);
+            if(i > 0) result.add(1);
+            results.add(result);
         }
         
-        return triangle;
+        return results;
     }
 }
