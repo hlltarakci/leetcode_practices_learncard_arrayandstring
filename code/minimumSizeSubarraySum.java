@@ -1,37 +1,27 @@
-// https://leetcode.com/problems/minimum-size-subarray-sum/
+// https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/1299/
 class Solution {
-	/*
-		clarifying questions & edge cases:
-		test: 
-            s = 7, nums = [2,3,1,2,4,3]
-		
-		algorithm:
-            sliding windows
-                iterate through 
-                    while less than s, widen window,
-                    shorten window until less then s
-
-        n: array length
-		time complexity: O(n)
-		space complexity: O(1)
-	*/
+    /*
+        n: arr len
+        time: O(n)
+        space: O(1)
+    */
     public int minSubArrayLen(int s, int[] nums) {
-        int minLen = Integer.MAX_VALUE, windowLen = 0, windowSum = 0;
+        int min=Integer.MAX_VALUE, count=0, sumSoFar = 0;
+        int left=0, right=0;
         
-        for(int i=0; i<nums.length; i++) {
-            if(windowSum <= s) {
-                windowSum += nums[i];
-                windowLen++;
+        while(right < nums.length) {
+            if(sumSoFar < s) {
+                count++;
+                sumSoFar += nums[right++];
             } 
             
-            while(windowSum >= s) {
-                minLen = Math.min(minLen, windowLen);
-                
-                windowSum -= nums[i-windowLen+1];
-                windowLen--;
+            while(sumSoFar >= s) {
+                min = Math.min(min, count);
+                count--;
+                sumSoFar -= nums[left++];
             }
         }
         
-        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+        return min == Integer.MAX_VALUE ? 0 : min;
     }
 }
