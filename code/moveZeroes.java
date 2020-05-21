@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/move-zeroes/
+// https://leetcode.com/explore/learn/card/array-and-string/204/conclusion/1174/
 class Solution {
 	/*
 		clarifying questions & edge cases:
@@ -21,5 +21,28 @@ class Solution {
         
         for(int i=index; i<nums.length; i++) nums[i] = 0;
         
+    }
+}
+
+
+///////////slightly different approach/////////////////
+class Solution {
+    /*
+        n: array length
+        time: O(n)
+        space: O(1)
+    */
+    public void moveZeroes(int[] nums) {
+        if(nums == null) return;
+        
+        int index = 0;
+        for(int i=0; i<nums.length; i++) {
+            if(nums[i] == 0) 
+                continue;
+            
+            nums[index] = nums[i];
+            if(i != index) nums[i] = 0;
+            index++;
+        }
     }
 }
