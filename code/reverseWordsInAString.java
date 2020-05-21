@@ -31,3 +31,25 @@ class Solution {
         return reversed.toString();
     }
 }
+
+////////////////another approach//////////////////
+class Solution {
+    /*
+        s: str len
+        time: O(s)
+        space: O(s) -- output
+    */
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+        if(words.length == 0) return "";
+        
+        StringBuilder sb = new StringBuilder();
+        for(int i=words.length-1; i>=0; i--) {
+            if(words[i].length() > 0)
+                sb.append(words[i]).append(" ");
+        }
+        
+        if(sb.length() > 0 ) sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+}
