@@ -1,24 +1,17 @@
-// https://leetcode.com/problems/reverse-string/
+// https://leetcode.com/explore/learn/card/array-and-string/205/array-two-pointer-technique/1183/
 class Solution {
     /*
-		clarifying questions & edge cases:
-		test: 
-		
-		algorithm: two pointers at each end, swap chars
-		
-        n: length of array
-		time complexity: O(n)
-		space complexity: O(1)
-	*/
+        n: array len
+        time: O(n)
+        space: O(1)
+    */
     public void reverseString(char[] s) {
-        int start = 0, end = s.length-1;
-        while(start < end) {
-            char temp = s[start];
-            s[start] = s[end];
-            s[end] = temp;
-            start++;
-            end--;
+        if(s == null) return;
+        int left=0, right=s.length-1;
+        while(left < right) {
+            char temp = s[left];
+            s[left++] = s[right];
+            s[right--] = temp;
         }
-        
     }
 }
