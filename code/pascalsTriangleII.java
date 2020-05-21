@@ -1,37 +1,24 @@
-// https://leetcode.com/problems/pascals-triangle-ii/
+// https://leetcode.com/explore/learn/card/array-and-string/204/conclusion/1171/
+
 class Solution {
-	/*
-		clarifying questions & edge cases:
-            negative k
-		test: 
-		
-		algorithm:
-		    keep track only the last 2 rows
-            
-        k: row index
-		time complexity: O(k^2)
-		space complexity: O(k)
-	*/
+    /*
+        time: O(k^2)
+        space: O(k)
+    */
     public List<Integer> getRow(int rowIndex) {
-        List<Integer> row = new ArrayList<>();
-        
-        if(rowIndex < 0) return row;
-        
-        row.add(1);
-        
-        while(rowIndex-- > 0) {
-            List<Integer> next = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+        List<Integer> prev = new ArrayList<>();
+        for(int i=0; i<=rowIndex; i++) {
+            result = new ArrayList<>();
+            result.add(1);
             
-            for(int i=0; i<row.size(); i++) {
-                if(i == 0) next.add(1);
-                else next.add(row.get(i-1) + row.get(i));
-            }
+            for(int j=0; j<prev.size()-1; j++) 
+                result.add(prev.get(j) + prev.get(j+1));
             
-            next.add(1);
-            
-            row = next;
+            if(i > 0) result.add(1);
+            prev = result;
         }
         
-        return row;
+        return result;
     }
 }
