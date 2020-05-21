@@ -1,22 +1,11 @@
-// https://leetcode.com/problems/rotate-array/solution/
+// https://leetcode.com/explore/learn/card/array-and-string/204/conclusion/1182/
+
 class Solution {
-	/*
-		clarifying questions & edge cases:
-            k greater than array length
-		test: 
-            [1,2,3,4,5,6,7] and k = 3
-            7 6 5 4 3 2 1
-            5 6 7 1 2 3 4
-		
-		algorithm:
-            reverse array
-            reverse first k elements
-            reverse the rest
-		
-        n: array length
-		time complexity: O(n)
-		space complexity: O(1)
-	*/
+    /*
+        n: arr length
+        time: O(n)
+        space: O(1)
+    */
     public void rotate(int[] nums, int k) {
         k = k % nums.length;
         reverse(nums, 0, nums.length-1);
@@ -24,13 +13,11 @@ class Solution {
         reverse(nums, k, nums.length-1);
     }
     
-    private void reverse(int[] nums, int start, int end) {
-        while(start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+    private void reverse(int[] nums, int left, int right) {
+        while(left < right) {
+            int temp = nums[left];
+            nums[left++] = nums[right];
+            nums[right--] = temp;
         }
     }
 }
