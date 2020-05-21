@@ -43,3 +43,32 @@ class Solution {
         for(int k=end-1; k>= start; k--) reversed.append(s.charAt(k));
     }
 }
+
+
+//////////////////another approach//////////////////////
+class Solution {
+    /*
+        s: str len
+        time: O(s)
+        space: O(s) -- output
+    */
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+        if(words.length == 0) return "";
+        
+        StringBuilder sb = new StringBuilder();
+        for(String word: words) {
+            sb.append(reverse(word)).append(" ");
+        }
+        
+        sb.deleteCharAt(sb.length()-1);
+        
+        return sb.toString();
+    }
+    
+    private String reverse(String str) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=str.length()-1; i>=0; i--) sb.append(str.charAt(i));
+        return sb.toString();
+    }
+}
