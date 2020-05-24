@@ -12,6 +12,8 @@ class Solution {
             int val = digits[i] + carry;
             carry = val / 10;
             digits[i] = val % 10;
+            
+            if(carry == 0) return digits;
         }
         
         if(carry == 1) {
